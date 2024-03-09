@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><center><body bgcolor="98a8a4"><center>
+     <h1><font color="red" font face="Arial"><b>Cookie Clicker</font></b></h1>
+   <style>
+        .back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://jopro2994.github.io/1/" class="back-link">Back</a>
+    <!-- Hier kommt der Rest deiner Website -->
+</body>
+     
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #cookie {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body GBCOLOR='#6B0103'>
+    <p>Cookies: <span id="cookies">0</span></p>
+    <p>Cookies per second: <span id="cps">0</span></p>
+    <img src="Cookie.png" alt="Cookie" id="cookie" onclick="clickCookie()"><br>
+    <button onclick="buyClickUpgrade()">Buy Click Upgrade (Cost: <span id="clickUpgradeCost">100</span> Cookies)</button><br>
+    <button onclick="buyAutoCookie()">Buy Auto Cookie (Cost: <span id="autoCookieCost">5000</span> Cookies)</button>
+
+    <script>
+        let cookies = 0;
+        let cookiesPerClick = 1;
+        let cookiesPerSecond = 0;
+        let clickUpgradeCost = 100;
+        let autoCookieCost = 5000;
+
+        function updateCookies() {
+            document.getElementById('cookies').textContent = cookies.toFixed(2);
+        }
+
+        function updateCPS() {
+            document.getElementById('cps').textContent = cookiesPerSecond.toFixed(2);
+        }
+
+        function clickCookie() {
+            cookies += cookiesPerClick;
+            updateCookies();
+        }
+
+        function buyClickUpgrade() {
+            if (cookies >= clickUpgradeCost) {
+                cookies -= clickUpgradeCost;
+                cookiesPerClick *= 2;
+                clickUpgradeCost *= 2;
+                document.getElementById('clickUpgradeCost').textContent = clickUpgradeCost;
+                updateCookies();
+            }
+        }
+
+        function buyAutoCookie() {
+            if (cookies >= autoCookieCost) {
+                cookies -= autoCookieCost;
+                cookiesPerSecond += 1;
+                autoCookieCost *= 2;
+                document.getElementById('autoCookieCost').textContent = autoCookieCost;
+                updateCookies();
+            }
+        }
+
+        setInterval(function() {
+            cookies += cookiesPerSecond;
+            updateCookies();
+            updateCPS();
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

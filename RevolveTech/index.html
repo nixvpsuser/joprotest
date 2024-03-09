@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revolve Tech - Die Zeit neu erleben</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1d1d2a; /* Dunkelblau */
+      color: #ffffff; /* Weiß */
+      overflow-x: hidden;
+    }
+    header {
+      background-color: #52c1dd; /* Hellblau */
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #52c1dd; /* Hellblau */
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      transform: translateX(200px);
+      transition: transform 0.3s ease-in-out;
+    }
+    nav.open {
+      transform: translateX(0);
+    }
+    nav a {
+      display: block;
+      color: #ffffff; /* Weiß */
+      text-decoration: none;
+      margin: 10px;
+      font-size: 18px;
+      transition: color 0.3s ease-in-out;
+    }
+    nav a:hover {
+      color: #ff7f0e; /* Orange */
+    }
+    section {
+      padding: 20px;
+    }
+    footer {
+      background-color: #52c1dd; /* Hellblau */
+      color: #ffffff; /* Weiß */
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Willkommen bei Revolve Tech</h1>
+    <p>Die Zeit neu erleben mit unseren innovativen Smartuhren und Accessoires</p>
+    <button id="toggleMenu">Menü</button>
+  </header>
+  <nav id="mainMenu">
+    <a href="#about">Über uns</a>
+    <a href="#products">Produkte</a>
+    <a href="#press">Presse</a>
+    <a href="#contact">Kontakt</a>
+  </nav>
+  <section id="about">
+    <h2>Über uns</h2>
+    <p>Revolve Tech ist ein führendes Unternehmen in der Entwicklung und Herstellung von smarten Wearables und Accessoires. Unsere Produkte verbinden innovative Technologie mit einem modernen Design und helfen unseren Kunden, ihren Alltag zu optimieren.</p>
+  </section>
+  <section id="products">
+    <h2>Unsere Produkte</h2>
+    <p>Entdecke unsere neuesten Smartuhren und Accessoires, die dir helfen, deine Zeit effizienter zu nutzen und deinen Lebensstil zu verbessern.</p>
+  </section>
+  <section id="press">
+    <h2>Presse</h2>
+    <p>Hier finden Sie die neuesten Pressemitteilungen und Medienressourcen von Revolve Tech.</p>
+  </section>
+  <section id="contact">
+    <h2>Kontakt</h2>
+    <p>Kontaktieren Sie unser Team für weitere Informationen oder geschäftliche Anfragen.</p>
+  </section>
+  <footer>
+    <p>&copy; 2024 Revolve Tech GmbH</p>
+  </footer>
+  <script>
+    const toggleMenu = document.getElementById('toggleMenu');
+    const mainMenu = document.getElementById('mainMenu');
+
+    toggleMenu.addEventListener('click', function() {
+      mainMenu.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

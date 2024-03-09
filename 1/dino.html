@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+      <style>
+        .back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://jopro2994.github.io/1/" class="back-link">Back</a>
+    <!-- Hier kommt der Rest deiner Website -->
+</body>
+     
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body bgcolor="98a8a4"><center>
+     <h1><font color="red" font face="Arial"><b>Dino Game</font></b></h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  #game-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  button {
+    padding: 12px 24px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  #gameCanvas {
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div id="game-container">
+  <button onclick="startGame()">Start</button>
+</div>
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+
+<script>
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+
+  var dino = {
+    x: 50,
+    y: 260,
+    width: 40,
+    height: 40,
+    jumping: false,
+    jumpPower: 15,
+    gravity: 1,
+    velocityY: 0,
+    color: '#333'
+  };
+
+  var obstacles = [];
+  var score = 0;
+  var isGameOver = false;
+
+  function drawDino() {
+    ctx.fillStyle = dino.color;
+    ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+  }
+
+  function drawObstacles() {
+    obstacles.forEach(function(obstacle) {
+      ctx.fillStyle = obstacle.color;
+      ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+    });
+  }
+
+  function jump() {
+    if (!dino.jumping) {
+      dino.jumping = true;
+      dino.velocityY = -dino.jumpPower;
+    }
+  }
+
+  function startGame() {
+    document.getElementById('game-container').innerHTML = '';
+    document.getElementById('gameCanvas').style.display = 'block';
+    isGameOver = false;
+    score = 0;
+    obstacles = [];
+    loop();
+  }
+
+  function loop() {
+    if (!isGameOver) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      dino.velocityY += dino.gravity;
+      dino.y += dino.velocityY;
+
+      if (dino.y > 260) {
+        dino.y = 260;
+        dino.jumping = false;
+      }
+
+      if (Math.random() < 0.005) {
+        createObstacle();
+      }
+
+      obstacles.forEach(function(obstacle) {
+        obstacle.x -= obstacle.velocityX; // Erhöhte Geschwindigkeit
+
+        if (obstacle.x + obstacle.width < 0) {
+          obstacles.shift();
+          score++;
+        }
+
+        if (checkCollision(obstacle)) {
+          isGameOver = true;
+        }
+      });
+
+      drawDino();
+      drawObstacles();
+      drawScore();
+
+      if (!isGameOver) {
+        requestAnimationFrame(loop);
+      } else {
+        endGame();
+      }
+    }
+  }
+
+  function drawScore() {
+    ctx.fillStyle = '#000';
+    ctx.font = '24px Arial';
+    ctx.fillText('Score: ' + score, 10, 30);
+  }
+
+  function createObstacle() {
+    var obstacle = {
+      x: canvas.width,
+      y: 280,
+      width: 20,
+      height: 20,
+      color: '#f00',
+      velocityX: Math.random() * 4 + 4 // Erhöhte Geschwindigkeit
+    };
+    obstacles.push(obstacle);
+  }
+
+  function checkCollision(obstacle) {
+    var dinoRight = dino.x + dino.width;
+    var dinoBottom = dino.y + dino.height;
+    var obstacleRight = obstacle.x + obstacle.width;
+    var obstacleBottom = obstacle.y + obstacle.height;
+
+    return dinoRight > obstacle.x && dino.x < obstacleRight && dinoBottom > obstacle.y && dino.y < obstacleBottom;
+  }
+
+  function endGame() {
+    ctx.fillStyle = '#000';
+    ctx.font = '24px Arial';
+    ctx.fillText('Game Over! Score: ' + score, canvas.width / 2 - 100, canvas.height / 2);
+    document.getElementById('game-container').innerHTML = '<button onclick="startGame()">Restart</button>';
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.code === 'KeyW') {
+      jump();
+    }
+  });
+</script>
+</body>
+</html>

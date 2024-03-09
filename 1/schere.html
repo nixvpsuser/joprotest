@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+	 <style>
+        .back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://jopro2994.github.io/1/" class="back-link">Back</a>
+    <!-- Hier kommt der Rest deiner Website -->
+</body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body bgcolor="98a8a4"><center>
+     <h1><font color="red" font face="Arial"><b> Schere Stein Papier</font></b></h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .choices {
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div class="choices">
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+        function playGame(userChoice) {
+            var choices = ['rock', 'paper', 'scissors'];
+            var computerChoice = choices[Math.floor(Math.random() * 3)];
+            
+            var result;
+            if (userChoice === computerChoice) {
+                result = "It's a tie!";
+            } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+                       (userChoice === 'paper' && computerChoice === 'rock') ||
+                       (userChoice === 'scissors' && computerChoice === 'paper')) {
+                result = "You win!";
+            } else {
+                result = "Computer wins!";
+            }
+            
+            document.getElementById('result').innerHTML = "You chose " + userChoice + ". Computer chose " + computerChoice + ". " + result;
+        }
+    </script>
+</body>
+</html>

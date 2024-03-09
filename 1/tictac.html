@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+  <style>
+        .back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://jopro2994.github.io/1/" class="back-link">Back</a>
+    <!-- Hier kommt der Rest deiner Website -->
+</body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <body bgcolor="98a8a4"><center>
+     <h1><font color="red" font face="Arial"><b>Tic Tac Toe</font></b></h1>
+<style>
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+  }
+  .cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+  <a href="#" class="cell" onclick="makeMove(0)"></a>
+  <a href="#" class="cell" onclick="makeMove(1)"></a>
+  <a href="#" class="cell" onclick="makeMove(2)"></a>
+  <a href="#" class="cell" onclick="makeMove(3)"></a>
+  <a href="#" class="cell" onclick="makeMove(4)"></a>
+  <a href="#" class="cell" onclick="makeMove(5)"></a>
+  <a href="#" class="cell" onclick="makeMove(6)"></a>
+  <a href="#" class="cell" onclick="makeMove(7)"></a>
+  <a href="#" class="cell" onclick="makeMove(8)"></a>
+</div>
+
+<script>
+  var currentPlayer = 'X'; // Spieler X beginnt
+
+  // Funktion zum Ausführen eines Spielzugs
+  function makeMove(cellIndex) {
+    var cell = document.getElementsByClassName('cell')[cellIndex];
+    if (!cell.innerHTML) { // Überprüfen, ob das Feld leer ist
+      cell.innerHTML = currentPlayer; // Setze das Zeichen des aktuellen Spielers
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; // Wechsle den Spieler
+    }
+    checkWinner(); // Überprüfe, ob es einen Gewinner gibt
+  }
+
+  // Funktion zum Überprüfen, ob es einen Gewinner gibt
+  function checkWinner() {
+    var cells = document.getElementsByClassName('cell');
+    var winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    for (var i = 0; i < winConditions.length; i++) {
+      var [a, b, c] = winConditions[i];
+      if (cells[a].innerHTML && cells[a].innerHTML === cells[b].innerHTML && cells[a].innerHTML === cells[c].innerHTML) {
+        alert(cells[a].innerHTML + ' hat gewonnen!');
+        resetBoard(); // Setze das Spielfeld zurück
+        return;
+      }
+    }
+    var isDraw = true;
+    for (var j = 0; j < cells.length; j++) {
+      if (!cells[j].innerHTML) {
+        isDraw = false;
+        break;
+      }
+    }
+    if (isDraw) {
+      alert('Unentschieden!');
+      resetBoard(); // Setze das Spielfeld zurück
+    }
+  }
+
+  // Funktion zum Zurücksetzen des Spielfelds
+  function resetBoard() {
+    var cells = document.getElementsByClassName('cell');
+    for (var i = 0; i < cells.length; i++) {
+      cells[i].innerHTML = ''; // Leere alle Zellen
+    }
+    currentPlayer = 'X'; // Setze den Spieler zurück auf X
+  }
+</script>
+
+</body>
+</html>
